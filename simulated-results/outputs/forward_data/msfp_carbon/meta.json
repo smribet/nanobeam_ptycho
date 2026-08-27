@@ -1,0 +1,15 @@
+{
+ "energy": 300000.0,
+ "gpts": 340,
+ "gpts_sim": 680,
+ "L": 68.0,
+ "slice_thickness": 2.0,
+ "phonons": 8,
+ "support": true,
+ "angles": {
+  "12": {
+   "defocus": 250.0,
+   "seconds": 3639.6
+  }
+ }
+}

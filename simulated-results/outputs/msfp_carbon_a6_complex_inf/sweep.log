@@ -1,0 +1,17 @@
+backend auto (device: mps) | 200 iterations, snapshots every 20
+13920 atoms (with carbon support) | 340^2 grid | 1156 positions | 7 regions
+   loaded ms data (1156, 340, 340) from data_ms_a6.npy
+
+alpha = 6.0 mrad, defocus 390 A, couples {111},{200}
+   seed   0:    84s  err 0.0265  global 0.923  polarity flips 1
+   seed   1:    84s  err 0.0268  global 0.919  polarity flips 0
+   seed   2:    84s  err 0.0264  global 0.916  polarity flips 1
+   seed   3:    84s  err 0.0265  global 0.920  polarity flips 0
+   seed   4:    84s  err 0.0264  global 0.921  polarity flips 1
+   seed   5:    84s  err 0.0274  global 0.912  polarity flips 0
+   seed   6:    84s  err 0.0264  global 0.923  polarity flips 0
+   seed   7:    84s  err 0.0269  global 0.917  polarity flips 1
+   seed   8:    84s  err 0.0264  global 0.917  polarity flips 0
+   seed   9:    84s  err 0.0264  global 0.921  polarity flips 1
+
+10 runs stored, 5.2 MB

@@ -1,0 +1,40 @@
+backend auto (device: mps) | 200 iterations, snapshots every 20
+1120 atoms (no carbon support) | 340^2 grid | 1156 positions | 7 regions
+
+alpha = 3.0 mrad, defocus 0 A, couples none
+   seed   0:    87s  err 0.0144  global 0.680  polarity flips 8  [6 ambiguous]
+   seed   1:    87s  err 0.0133  global 0.767  polarity flips 5  [3 ambiguous]
+   seed   2:    87s  err 0.0093  global 0.366  polarity flips 2
+   seed   3:    86s  err 0.0088  global 0.794  polarity flips 9
+   seed   4:    87s  err 0.0083  global 0.331  polarity flips 2
+   seed   5:    87s  err 0.0084  global 0.889  polarity flips 4
+   seed   6:    84s  err 0.0105  global 0.406  polarity flips 1  [1 ambiguous]
+   seed   7:    83s  err 0.0136  global 0.471  polarity flips 1  [2 ambiguous]
+   seed   8:    84s  err 0.0091  global 0.888  polarity flips 3
+   seed   9:    84s  err 0.0134  global 0.732  polarity flips 5  [5 ambiguous]
+
+alpha = 6.0 mrad, defocus 390 A, couples {111},{200}
+   seed   0:    84s  err 0.0041  global 0.976  polarity flips 1
+   seed   1:    84s  err 0.0067  global 0.949  polarity flips 1
+   seed   2:    84s  err 0.0118  global 0.926  polarity flips 1
+   seed   3:    84s  err 0.0017  global 0.981  polarity flips 0
+   seed   4:    84s  err 0.0116  global 0.910  polarity flips 1
+   seed   5:    84s  err 0.0111  global 0.924  polarity flips 0
+   seed   6:    85s  err 0.0041  global 0.979  polarity flips 0
+   seed   7:    86s  err 0.0096  global 0.936  polarity flips 1
+   seed   8:    85s  err 0.0075  global 0.981  polarity flips 2
+   seed   9:    85s  err 0.0065  global 0.987  polarity flips 1
+
+alpha = 12.0 mrad, defocus 250 A, couples all
+   seed   0:    84s  err 0.0000  global 0.993  polarity flips 0
+   seed   1:    84s  err 0.0000  global 0.993  polarity flips 0
+   seed   2:    85s  err 0.0000  global 0.993  polarity flips 0
+   seed   3:    84s  err 0.0000  global 0.993  polarity flips 0
+   seed   4:    83s  err 0.0000  global 0.993  polarity flips 0
+   seed   5:    83s  err 0.0000  global 0.993  polarity flips 0
+   seed   6:    84s  err 0.0000  global 0.993  polarity flips 0
+   seed   7:    83s  err 0.0000  global 0.993  polarity flips 0
+   seed   8:    83s  err 0.0000  global 0.993  polarity flips 0
+   seed   9:    83s  err 0.0000  global 0.993  polarity flips 0
+
+30 runs stored, 13.9 MB

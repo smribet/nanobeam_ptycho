@@ -1,0 +1,68 @@
+backend auto (device: mps) | 200 iterations, snapshots every 20
+13920 atoms (with carbon support) | 340^2 grid | 1156 positions | 7 regions
+   loaded ms data (1156, 340, 340) from data_ms_a3.npy
+
+alpha = 3.0 mrad, defocus 0 A, couples none
+   seed   0:    89s  err 0.1266  global 0.754  polarity flips 3  [1 ambiguous]
+   seed   1:    90s  err 0.1260  global 0.818  polarity flips 1
+   seed   2:    89s  err 0.1266  global 0.856  polarity flips 4
+   seed   3:    89s  err 0.1253  global 0.848  polarity flips 2
+   seed   4:    89s  err 0.1255  global 0.821  polarity flips 5
+   seed   5:    90s  err 0.1259  global 0.847  polarity flips 1
+   seed   6:    88s  err 0.1261  global 0.838  polarity flips 3
+   seed   7:    88s  err 0.1252  global 0.768  polarity flips 2
+   seed   8:    89s  err 0.1263  global 0.823  polarity flips 1
+   seed   9:    90s  err 0.1278  global 0.687  polarity flips 1  [1 ambiguous]
+
+10 runs stored, 5.2 MB
+backend auto (device: mps) | 200 iterations, snapshots every 20
+13920 atoms (with carbon support) | 340^2 grid | 1156 positions | 7 regions
+   loaded ms data (1156, 340, 340) from data_ms_a3.npy
+
+alpha = 3.0 mrad, defocus 0 A, couples none
+   seed 100:    89s  err 0.1262  global 0.796  polarity flips 0
+   seed 101:    89s  err 0.1266  global 0.680  polarity flips 4  [1 ambiguous]
+   seed 102:    89s  err 0.1270  global 0.653  polarity flips 1  [1 ambiguous]
+   seed 103:    90s  err 0.1269  global 0.862  polarity flips 3
+   seed 104:    90s  err 0.1262  global 0.820  polarity flips 2
+   seed 105:    89s  err 0.1260  global 0.748  polarity flips 3
+   seed 106:    89s  err 0.1262  global 0.740  polarity flips 0
+   seed 107:    89s  err 0.1256  global 0.716  polarity flips 0
+   seed 108:    89s  err 0.1269  global 0.811  polarity flips 0  [1 ambiguous]
+   seed 109:    90s  err 0.1263  global 0.791  polarity flips 1  [1 ambiguous]
+
+20 runs stored, 9.5 MB
+backend auto (device: mps) | 200 iterations, snapshots every 20
+13920 atoms (with carbon support) | 340^2 grid | 1156 positions | 7 regions
+   loaded ms data (1156, 340, 340) from data_ms_a3.npy
+
+alpha = 3.0 mrad, defocus 0 A, couples none
+   seed 200:    96s  err 0.1266  global 0.834  polarity flips 0
+   seed 201:    96s  err 0.1264  global 0.846  polarity flips 0
+   seed 202:    96s  err 0.1258  global 0.857  polarity flips 1
+   seed 203:    96s  err 0.1268  global 0.847  polarity flips 3
+   seed 204:    96s  err 0.1249  global 0.858  polarity flips 0
+   seed 205:    96s  err 0.1252  global 0.843  polarity flips 2
+   seed 206:    96s  err 0.1265  global 0.695  polarity flips 2  [1 ambiguous]
+   seed 207:    96s  err 0.1255  global 0.874  polarity flips 0
+   seed 208:    90s  err 0.1270  global 0.745  polarity flips 1
+   seed 209:    90s  err 0.1260  global 0.874  polarity flips 4
+
+30 runs stored, 13.8 MB
+backend auto (device: mps) | 200 iterations, snapshots every 20
+13920 atoms (with carbon support) | 340^2 grid | 1156 positions | 7 regions
+   loaded ms data (1156, 340, 340) from data_ms_a3.npy
+
+alpha = 3.0 mrad, defocus 0 A, couples none
+   seed 300:    89s  err 0.1251  global 0.863  polarity flips 0
+   seed 301:    91s  err 0.1255  global 0.822  polarity flips 0
+   seed 302:    89s  err 0.1259  global 0.850  polarity flips 0
+   seed 303:    89s  err 0.1264  global 0.688  polarity flips 0
+   seed 304:    88s  err 0.1268  global 0.765  polarity flips 1
+   seed 305:    89s  err 0.1250  global 0.847  polarity flips 0
+   seed 306:    89s  err 0.1262  global 0.871  polarity flips 0
+   seed 307:    89s  err 0.1250  global 0.852  polarity flips 1
+   seed 308:    89s  err 0.1269  global 0.704  polarity flips 3  [1 ambiguous]
+   seed 309:    88s  err 0.1268  global 0.591  polarity flips 1
+
+40 runs stored, 18.1 MB

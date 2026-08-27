@@ -1,0 +1,22 @@
+[project]
+name = "nanobeam-ptycho-simulations"
+version = "1.0.0"
+description = "Multislice simulations and ptychographic reconstruction sweeps for the nanobeam ptychography ambiguity study"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "abtem>=1.0.9",       # multislice forward model and probe construction
+    "py4dstem",           # get_maxima_2D, for disk detection in the stitching control
+    "ase>=3.29",          # atomic models
+    "wulffpack>=1.5",     # Wulff-construction nanoparticle shapes
+    "numpy>=2.0",
+    "scipy>=1.14",
+    "pandas>=2.2",
+    "matplotlib>=3.9",
+    "torch>=2.4",         # optional ePIE backend (MPS/CUDA); imported lazily in sim.py
+]
+
+[tool.uv.sources]
+# The released py4dstem still pins numpy<2, which abtem 1.x will not tolerate.  Only
+# `process.utils.get_maxima_2D` is used here, so track the development head instead.
+py4dstem = { git = "https://github.com/py4dstem/py4DSTEM.git" }

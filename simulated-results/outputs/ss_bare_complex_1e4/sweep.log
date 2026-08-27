@@ -1,0 +1,160 @@
+backend auto (device: mps) | 200 iterations, snapshots every 20
+1120 atoms (no carbon support) | 340^2 grid | 1156 positions | 7 regions
+
+alpha = 3.0 mrad, defocus 0 A, couples none
+   seed   0:    84s  err 0.1683  global 0.599  polarity flips 5  [7 ambiguous]
+   seed   1:    86s  err 0.1683  global 0.454  polarity flips 5  [7 ambiguous]
+   seed   2:    88s  err 0.1682  global 0.567  polarity flips 0  [2 ambiguous]
+   seed   3:    89s  err 0.1683  global 0.463  polarity flips 1
+   seed   4:    88s  err 0.1682  global 0.560  polarity flips 1  [2 ambiguous]
+   seed   5:    88s  err 0.1682  global 0.784  polarity flips 1
+   seed   6:    87s  err 0.1682  global 0.446  polarity flips 0
+   seed   7:    88s  err 0.1682  global 0.448  polarity flips 1
+   seed   8:    88s  err 0.1682  global 0.662  polarity flips 2
+   seed   9:    89s  err 0.1682  global 0.821  polarity flips 1  [1 ambiguous]
+
+alpha = 6.0 mrad, defocus 390 A, couples {111},{200}
+   seed   0:    89s  err 0.1952  global 0.893  polarity flips 1
+   seed   1:    88s  err 0.1952  global 0.885  polarity flips 1
+   seed   2:    89s  err 0.1952  global 0.879  polarity flips 1
+   seed   3:    89s  err 0.1952  global 0.896  polarity flips 0
+   seed   4:    92s  err 0.1952  global 0.892  polarity flips 1
+   seed   5:    90s  err 0.1952  global 0.885  polarity flips 1
+   seed   6:    90s  err 0.1952  global 0.894  polarity flips 0
+   seed   7:    91s  err 0.1952  global 0.884  polarity flips 1
+   seed   8:    88s  err 0.1952  global 0.882  polarity flips 2
+   seed   9:    89s  err 0.1952  global 0.866  polarity flips 1
+
+alpha = 12.0 mrad, defocus 250 A, couples all
+   seed   0:    89s  err 0.2514  global 0.899  polarity flips 0
+   seed   1:    89s  err 0.2514  global 0.896  polarity flips 0
+   seed   2:    84s  err 0.2514  global 0.896  polarity flips 0
+   seed   3:    83s  err 0.2514  global 0.898  polarity flips 0
+   seed   4:    83s  err 0.2514  global 0.896  polarity flips 0
+   seed   5:    83s  err 0.2514  global 0.895  polarity flips 0
+   seed   6:    84s  err 0.2514  global 0.897  polarity flips 0
+   seed   7:    84s  err 0.2514  global 0.902  polarity flips 0
+   seed   8:    84s  err 0.2514  global 0.897  polarity flips 0
+   seed   9:    84s  err 0.2514  global 0.898  polarity flips 0
+
+30 runs stored, 13.9 MB
+backend auto (device: mps) | 200 iterations, snapshots every 20
+1120 atoms (no carbon support) | 340^2 grid | 1156 positions | 7 regions
+
+alpha = 3.0 mrad, defocus 0 A, couples none
+   seed 100:    84s  err 0.1683  global 0.562  polarity flips 1
+   seed 101:    83s  err 0.1684  global 0.549  polarity flips 2  [2 ambiguous]
+   seed 102:   444s  err 0.1683  global 0.363  polarity flips 0
+   seed 103: 10238s  err 0.1683  global 0.501  polarity flips 1
+   seed 104:    86s  err 0.1684  global 0.571  polarity flips 0  [1 ambiguous]
+   seed 105:    86s  err 0.1683  global 0.592  polarity flips 1  [2 ambiguous]
+   seed 106:    85s  err 0.1683  global 0.696  polarity flips 1  [1 ambiguous]
+   seed 107:    86s  err 0.1683  global 0.756  polarity flips 1  [1 ambiguous]
+   seed 108:    85s  err 0.1683  global 0.826  polarity flips 1
+   seed 109:    86s  err 0.1683  global 0.805  polarity flips 2
+
+alpha = 6.0 mrad, defocus 390 A, couples {111},{200}
+   seed 100:    86s  err 0.1953  global 0.876  polarity flips 1
+   seed 101:    85s  err 0.1953  global 0.868  polarity flips 2
+   seed 102:    85s  err 0.1953  global 0.773  polarity flips 2  [1 ambiguous]
+   seed 103:    85s  err 0.1953  global 0.887  polarity flips 0
+   seed 104:    85s  err 0.1953  global 0.892  polarity flips 0
+   seed 105:    85s  err 0.1953  global 0.893  polarity flips 1
+   seed 106:    86s  err 0.1953  global 0.869  polarity flips 1
+   seed 107:    85s  err 0.1953  global 0.826  polarity flips 1
+   seed 108:    85s  err 0.1953  global 0.884  polarity flips 0
+   seed 109:    84s  err 0.1953  global 0.853  polarity flips 0
+
+alpha = 12.0 mrad, defocus 250 A, couples all
+   seed 100:    85s  err 0.2514  global 0.894  polarity flips 0
+   seed 101:    85s  err 0.2514  global 0.899  polarity flips 0
+   seed 102:    85s  err 0.2514  global 0.896  polarity flips 0
+   seed 103:    86s  err 0.2514  global 0.901  polarity flips 0
+   seed 104:    85s  err 0.2514  global 0.899  polarity flips 0
+   seed 105:    85s  err 0.2514  global 0.897  polarity flips 0
+   seed 106:    85s  err 0.2514  global 0.892  polarity flips 0
+   seed 107:    86s  err 0.2513  global 0.899  polarity flips 0
+   seed 108:    86s  err 0.2514  global 0.898  polarity flips 0
+   seed 109:    86s  err 0.2514  global 0.898  polarity flips 0
+
+60 runs stored, 27.0 MB
+backend auto (device: mps) | 200 iterations, snapshots every 20
+1120 atoms (no carbon support) | 340^2 grid | 1156 positions | 7 regions
+
+alpha = 3.0 mrad, defocus 0 A, couples none
+   seed 200:    84s  err 0.1683  global 0.509  polarity flips 1  [2 ambiguous]
+   seed 201:    84s  err 0.1683  global 0.483  polarity flips 1  [1 ambiguous]
+   seed 202:    84s  err 0.1682  global 0.867  polarity flips 7
+   seed 203:    83s  err 0.1683  global 0.497  polarity flips 1  [1 ambiguous]
+   seed 204:    84s  err 0.1683  global 0.570  polarity flips 1  [2 ambiguous]
+   seed 205:    84s  err 0.1683  global 0.505  polarity flips 1  [1 ambiguous]
+   seed 206:    84s  err 0.1684  global 0.503  polarity flips 4  [6 ambiguous]
+   seed 207:    84s  err 0.1683  global 0.819  polarity flips 0
+   seed 208:    83s  err 0.1682  global 0.813  polarity flips 2  [1 ambiguous]
+   seed 209:    84s  err 0.1683  global 0.510  polarity flips 1  [2 ambiguous]
+
+alpha = 6.0 mrad, defocus 390 A, couples {111},{200}
+   seed 200:    83s  err 0.1954  global 0.888  polarity flips 2
+   seed 201:    84s  err 0.1954  global 0.844  polarity flips 1
+   seed 202:    83s  err 0.1954  global 0.889  polarity flips 1
+   seed 203:    84s  err 0.1954  global 0.896  polarity flips 2
+   seed 204:    84s  err 0.1954  global 0.896  polarity flips 0
+   seed 205:    83s  err 0.1954  global 0.851  polarity flips 1
+   seed 206:    84s  err 0.1954  global 0.881  polarity flips 1
+   seed 207:    84s  err 0.1954  global 0.872  polarity flips 1
+   seed 208:    84s  err 0.1954  global 0.894  polarity flips 1
+   seed 209:    83s  err 0.1954  global 0.897  polarity flips 1
+
+alpha = 12.0 mrad, defocus 250 A, couples all
+   seed 200:    84s  err 0.2514  global 0.902  polarity flips 0
+   seed 201:    85s  err 0.2514  global 0.898  polarity flips 0
+   seed 202:    84s  err 0.2514  global 0.900  polarity flips 0
+   seed 203:    85s  err 0.2514  global 0.899  polarity flips 0
+   seed 204:    84s  err 0.2514  global 0.902  polarity flips 0
+   seed 205:    84s  err 0.2514  global 0.901  polarity flips 0
+   seed 206:    84s  err 0.2514  global 0.898  polarity flips 0
+   seed 207:    83s  err 0.2514  global 0.895  polarity flips 0
+   seed 208:    84s  err 0.2514  global 0.897  polarity flips 0
+   seed 209:    83s  err 0.2514  global 0.899  polarity flips 0
+
+90 runs stored, 40.0 MB
+backend auto (device: mps) | 200 iterations, snapshots every 20
+1120 atoms (no carbon support) | 340^2 grid | 1156 positions | 7 regions
+
+alpha = 3.0 mrad, defocus 0 A, couples none
+   seed 300:    84s  err 0.1682  global 0.609  polarity flips 0
+   seed 301:    84s  err 0.1682  global 0.822  polarity flips 0
+   seed 302:    84s  err 0.1681  global 0.803  polarity flips 2  [1 ambiguous]
+   seed 303:    84s  err 0.1682  global 0.476  polarity flips 0  [1 ambiguous]
+   seed 304:    84s  err 0.1682  global 0.431  polarity flips 3  [1 ambiguous]
+   seed 305:    84s  err 0.1682  global 0.698  polarity flips 1
+   seed 306:    83s  err 0.1683  global 0.787  polarity flips 1  [6 ambiguous]
+   seed 307:    84s  err 0.1682  global 0.493  polarity flips 1  [2 ambiguous]
+   seed 308:    84s  err 0.1682  global 0.437  polarity flips 0  [2 ambiguous]
+   seed 309:    84s  err 0.1683  global 0.786  polarity flips 9  [5 ambiguous]
+
+alpha = 6.0 mrad, defocus 390 A, couples {111},{200}
+   seed 300:    83s  err 0.1953  global 0.837  polarity flips 1
+   seed 301:    84s  err 0.1953  global 0.875  polarity flips 0
+   seed 302:    84s  err 0.1953  global 0.886  polarity flips 1
+   seed 303:    86s  err 0.1953  global 0.892  polarity flips 1
+   seed 304:    86s  err 0.1953  global 0.885  polarity flips 2
+   seed 305:    86s  err 0.1953  global 0.874  polarity flips 2
+   seed 306:    87s  err 0.1953  global 0.877  polarity flips 1
+   seed 307:    89s  err 0.1953  global 0.895  polarity flips 0
+   seed 308:    87s  err 0.1953  global 0.825  polarity flips 1  [1 ambiguous]
+   seed 309:    86s  err 0.1953  global 0.883  polarity flips 1
+
+alpha = 12.0 mrad, defocus 250 A, couples all
+   seed 300:    85s  err 0.2513  global 0.895  polarity flips 0
+   seed 301:    85s  err 0.2513  global 0.899  polarity flips 0
+   seed 302:    87s  err 0.2513  global 0.899  polarity flips 0
+   seed 303:    87s  err 0.2513  global 0.897  polarity flips 0
+   seed 304:    87s  err 0.2513  global 0.896  polarity flips 0
+   seed 305:    85s  err 0.2513  global 0.894  polarity flips 0
+   seed 306:    85s  err 0.2513  global 0.896  polarity flips 0
+   seed 307:    84s  err 0.2513  global 0.896  polarity flips 0
+   seed 308:    85s  err 0.2513  global 0.897  polarity flips 0
+   seed 309:    86s  err 0.2513  global 0.896  polarity flips 0
+
+120 runs stored, 53.1 MB
