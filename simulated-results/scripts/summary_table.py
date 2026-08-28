@@ -12,8 +12,14 @@ Columns:
                disagree -- the decision-relevant number, and the one you cannot check
                experimentally without repeating the reconstruction
   reversed     fraction of regions returned with inverted contrast
-  med q        median offset as a fraction of the Wigner-Seitz cell area enclosed;
-               0 is perfect registration, 0.5 is indistinguishable from random
+  shifted      fraction of regions whose offset exceeds `q_tol` of the Wigner-Seitz cell
+               area, i.e. visibly mis-registered.  Reported as a rate rather than as the
+               median offset it replaced: the median sits at 0.00 on almost every row
+               because most regions register perfectly, which hid the tail that actually
+               fails -- on free-standing 3 mrad at 1e5 the median is 0.00 while 9% of
+               regions are beyond a quarter cell.  A rate is also directly comparable to
+               `reversed`, so the two failure modes can be read against each other, and it
+               uses the same threshold as `non-unique` and the reconstruction panels
   |corr|       mean absolute correlation to ground truth -- how good the lattice is,
                regardless of where it sits or which sign it has
   degraded     fraction of regions with |corr| < 0.5, i.e. no lattice recovered at all
@@ -48,7 +54,7 @@ CONDITIONS = [
 MULTI_ANGLE = {"matched, on carbon", "matched, free-standing"}
 
 
-def metrics(d, angle, QF, min_corr=0.5):
+def metrics(d, angle, QF, min_corr=0.5, q_tol=0.25):
     f = paths.sweep(d) / "summary.csv"
     if not f.exists():
         return None
@@ -64,11 +70,12 @@ def metrics(d, angle, QF, min_corr=0.5):
     # shared with the figures, so the table and the panel labels cannot drift apart; it
     # counts a polarity flip or an offset spread above a quarter of the cell, rather than
     # any bitwise difference in the offsets
-    nonuniq, ngroups = figpanels.nonunanimity(d, angle=angle, min_corr=min_corr)
+    nonuniq, ngroups = figpanels.nonunanimity(d, angle=angle, min_corr=min_corr,
+                                              q_tol=q_tol)
     return dict(n_runs=df.seed.nunique(), n_groups=ngroups,
                 nonuniq=nonuniq,
                 reversed=g["reversed"].mean() if len(g) else np.nan,
-                medq=g.q.median() if len(g) else np.nan,
+                shifted=(g.q > q_tol).mean() if len(g) else np.nan,
                 acorr=df.signed_corr.abs().mean(),
                 degraded=(~good).mean())
 
@@ -87,7 +94,7 @@ def main():
                 m = metrics(dirs[d], a, QF)
                 rows.append(dict(condition=name, angle_mrad=a, dose=DLAB[d],
                                  **(m or dict(n_runs=0, n_groups=0, nonuniq=np.nan,
-                                              reversed=np.nan, medq=np.nan,
+                                              reversed=np.nan, shifted=np.nan,
                                               acorr=np.nan, degraded=np.nan))))
     T = pd.DataFrame(rows)
     out = paths.figures()
@@ -96,12 +103,12 @@ def main():
     def fmt(v, p=2):
         return "--" if not np.isfinite(v) else f"{v:.{p}f}"
 
-    lines = ["| condition | angle | dose | runs | groups | non-unique | reversed | med q | \\|corr\\| | degraded |",
+    lines = ["| condition | angle | dose | runs | groups | non-unique | reversed | shifted | \\|corr\\| | degraded |",
              "|---|---|---|---|---|---|---|---|---|---|"]
     for _, r in T.iterrows():
         lines.append(f"| {r.condition} | {r.angle_mrad:g} mrad | {r.dose} | "
                      f"{int(r.n_runs)} | {int(r.n_groups)} | {fmt(r.nonuniq)} | {fmt(r['reversed'])} | "
-                     f"{fmt(r.medq)} | {fmt(r.acorr, 3)} | {fmt(r.degraded)} |")
+                     f"{fmt(r.shifted)} | {fmt(r.acorr, 3)} | {fmt(r.degraded)} |")
     md = "\n".join(lines)
     (out / "summary_table.md").write_text(md + "\n")
     print(md)
