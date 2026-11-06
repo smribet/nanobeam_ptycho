@@ -120,13 +120,24 @@ def phonons_layout(sub=None):
         save(fig, f"phonons_layoutA_{dose}.png")
 
 
+# The revision's on-carbon conditions use the physical 2.8 nm film (R0, film seed 10; the
+# 3 mrad pools over three further films are in draw_level.py and the table only).  The
+# submitted versions read the folded film's sweeps, which are kept under LEGACY.
 CONDITIONS = {
+    "msfp":    lambda d: {a: f"rev/msfp_carbon28_a{a:g}_complex_{d}" for a in ANGLES},
+    "ms":      lambda d: {a: f"rev/ms_carbon28_a{a:g}_complex_{d}" for a in ANGLES},
+    "msphase": lambda d: {a: f"rev/ms_carbon28_a{a:g}_phase_{d}" for a in ANGLES},
+    "matched": lambda d: f"rev/ss_carbon28_complex_{d}",
+    "bare":    lambda d: f"ss_bare_complex_{d}",
+}
+LEGACY = {
     "msfp":    lambda d: {a: f"msfp_carbon_a{a:g}_complex_{d}" for a in ANGLES},
     "ms":      lambda d: {a: f"ms_carbon_a{a:g}_complex_{d}" for a in ANGLES},
     "msphase": lambda d: {a: f"ms_carbon_a{a:g}_phase_{d}" for a in ANGLES},
     "matched": lambda d: f"ss_carbon_complex_{d}",
-    "bare":    lambda d: f"ss_bare_complex_{d}",
 }
+# diffraction data of the sample each on-carbon row was reconstructed from
+C28 = {"dp_dir": "dp_cache/carbon28.npz"}
 LABELS = {"msfp": "multislice + frozen phonons, complex object",
           "ms": "multislice, complex object",
           "msphase": "multislice, pure-phase object",
@@ -153,10 +164,10 @@ def fig_sweep(which="model_then_dose"):
     step.  The second is the stricter reading of "change only one thing from the control",
     since dose and model are varied along separate arms from the same origin.
     """
-    R = {"c5": ("complex-valued object, $10^5$ e/Å$^2$", CONDITIONS["ms"]("1e5"), 1e5),
-         "c4": ("complex-valued object, $10^4$ e/Å$^2$", CONDITIONS["ms"]("1e4"), 1e4),
-         "p5": ("pure-phase object, $10^5$ e/Å$^2$", CONDITIONS["msphase"]("1e5"), 1e5),
-         "p4": ("pure-phase object, $10^4$ e/Å$^2$", CONDITIONS["msphase"]("1e4"), 1e4)}
+    R = {"c5": ("complex-valued object, $10^5$ e/Å$^2$", CONDITIONS["ms"]("1e5"), 1e5, C28),
+         "c4": ("complex-valued object, $10^4$ e/Å$^2$", CONDITIONS["ms"]("1e4"), 1e4, C28),
+         "p5": ("pure-phase object, $10^5$ e/Å$^2$", CONDITIONS["msphase"]("1e5"), 1e5, C28),
+         "p4": ("pure-phase object, $10^4$ e/Å$^2$", CONDITIONS["msphase"]("1e4"), 1e4, C28)}
     SETS = {"model_then_dose": (["c5", "p5", "p4"],
                                 "Object model, then dose: one variable per row"),
             "dose_then_model": (["c5", "c4", "p4"],
@@ -197,7 +208,7 @@ def fig_si_substrate(dose="1e5"):
     rows = [(f"free-standing, {DOSE_L[dose]}", bare, DOSEV[dose],
              {"dp_dir": "dp_cache/bare.npz"}),
             (f"on amorphous carbon, {DOSE_L[dose]}", CONDITIONS["matched"](dose),
-             DOSEV[dose])]
+             DOSEV[dose], C28)]
     fig = fp.layout_rows(rows)
     save(fig, "fig_si_substrate.png")
 
@@ -215,8 +226,8 @@ def fig_si_phonons(dose="1e4"):
     in the main figure: as well as roughly doubling the non-uniqueness they *degrade* the
     reconstructions, which is what makes the ambiguity hard to spot on real data.
     """
-    rows = [(f"no thermal motion, {DOSE_L[dose]}", CONDITIONS["ms"](dose), DOSEV[dose]),
-            (f"8 frozen phonons, {DOSE_L[dose]}", CONDITIONS["msfp"](dose), DOSEV[dose])]
+    rows = [(f"no thermal motion, {DOSE_L[dose]}", CONDITIONS["ms"](dose), DOSEV[dose], C28),
+            (f"8 frozen phonons, {DOSE_L[dose]}", CONDITIONS["msfp"](dose), DOSEV[dose], C28)]
     fig = fp.layout_rows(rows)
     save(fig, "fig_si_phonons.png")
 
@@ -229,6 +240,12 @@ PAPER = {"fig_sweep":        lambda: fig_sweep("dose_then_model"),
          "fig_si_phonons":   lambda: fig_si_phonons("1e4")}
 
 EXPLORATORY = ("fixednoise", "ms", "phonons", "phonons_layout", "pair", "quad")
+
+
+def paper():
+    """All three paper figures, as one callable for fig_inputs.py."""
+    for f in PAPER.values():
+        f()
 
 
 if __name__ == "__main__":

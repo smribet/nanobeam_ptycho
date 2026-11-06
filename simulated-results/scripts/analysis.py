@@ -31,6 +31,23 @@ def band_limit(a, sampling, lo=BAND[0], hi=BAND[1]):
     return np.real(np.fft.ifft2(np.fft.fft2(a) * ((q > lo) & (q < hi))))
 
 
+def object_phase(O, sampling, smooth=None):
+    """Band-limited phase of a complex object, as every sweep scores it.
+
+    With `smooth` (Angstrom), O is first divided by a Gaussian-smoothed copy of itself.
+    np.angle wraps once a thick film's mean phase plus a particle's exceeds pi, which
+    breaks the lattice into fragments that correlate with nothing; referring the phase to
+    its own slowly varying part keeps the angle small.  What is removed lies far below the
+    band, so nothing the band keeps is lost.
+    """
+    if smooth:
+        from scipy.ndimage import gaussian_filter
+        s = smooth / sampling
+        O = O * np.conj(gaussian_filter(O.real, s, mode="wrap")
+                        + 1j * gaussian_filter(O.imag, s, mode="wrap"))
+    return band_limit(np.angle(O), sampling)
+
+
 def _grid(shape, sampling):
     x = np.arange(shape[0]) * sampling
     return np.meshgrid(x, x, indexing="ij")

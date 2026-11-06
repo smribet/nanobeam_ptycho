@@ -40,9 +40,9 @@ POS, NEG = "#2166ac", "#b2182b"
 INK, MUTED, RULE = "#1a1a19", "#6b6b68", "#d9d9d5"
 
 CONDITIONS = [
-    ("complex object, $10^5$ e/Å$^2$", "ms_carbon_a3_complex_1e5"),
-    ("complex object, $10^4$ e/Å$^2$", "ms_carbon_a3_complex_1e4"),
-    ("pure-phase object, $10^4$ e/Å$^2$", "ms_carbon_a3_phase_1e4"),
+    ("complex object, $10^5$ e/Å$^2$", "rev/ms_carbon28_a3_complex_1e5"),
+    ("complex object, $10^4$ e/Å$^2$", "rev/ms_carbon28_a3_complex_1e4"),
+    ("pure-phase object, $10^4$ e/Å$^2$", "rev/ms_carbon28_a3_phase_1e4"),
 ]
 LABELS = ["[111]", "[100]"] + [f"wedge {i}" for i in range(1, 6)]
 

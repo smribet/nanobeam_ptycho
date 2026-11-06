@@ -1,0 +1,24 @@
+{
+ "energy": 300000.0,
+ "gpts": 340,
+ "gpts_sim": 680,
+ "L": 68.0,
+ "slice_thickness": 2.0,
+ "phonons": 8,
+ "support": true,
+ "carbon_thickness": 28.0,
+ "carbon_seed": 13,
+ "scan_jitter": 0.0,
+ "jitter_seed": 0,
+ "source_sigma": 0.0,
+ "focal_sigma": 0.0,
+ "n_source": 5,
+ "n_focal": 5,
+ "backend": "torch",
+ "angles": {
+  "3": {
+   "defocus": 0.0,
+   "seconds": 152.1
+  }
+ }
+}

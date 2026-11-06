@@ -1,0 +1,11 @@
+angle_mrad,seed,coupling,boundary,registry_err_A,d_shared_A,frac_of_d,sign_flip,ambiguous
+3.0,0,none,0-1,0.0,2.3892764543494422,0.0,False,False
+3.0,0,none,1-2,0.0,2.3681738582039142,0.0,False,False
+3.0,0,none,2-3,0.0,2.437135098586132,0.0,False,False
+3.0,0,none,3-4,0.0,2.415512433306319,0.0,False,False
+3.0,0,none,4-0,0.0,2.42818431269608,0.0,False,False
+3.0,1,none,0-1,0.0,2.3892764543494422,0.0,False,False
+3.0,1,none,1-2,0.0,2.3681738582039142,0.0,False,False
+3.0,1,none,2-3,0.0,2.437135098586132,0.0,False,False
+3.0,1,none,3-4,0.0,2.415512433306319,0.0,False,False
+3.0,1,none,4-0,0.0,2.42818431269608,0.0,False,False

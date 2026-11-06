@@ -109,8 +109,7 @@ def pick_seeds(ctx, n=3, verbose=False, min_corr=0.5):
     df["q"] = [ctx["QF"][p](np.hypot(x, y))
                for p, x, y in zip(df.particle, df.ws_x, df.ws_y)]
     good = df.signed_corr.abs() >= min_corr
-    amb = np.clip((df.peak_ratio - 0.7) / 0.3, 0.0, 1.0)
-    df["score"] = np.where(good, 2.0 * df["reversed"] + 3.0 * df["q"] + 0.8 * amb, 0.0)
+    df["score"] = np.where(good, 2.0 * df["reversed"] + 3.0 * df["q"], 0.0)
     per_run = df.groupby(["noise_seed", "seed"])["score"].sum()
     best_ds = per_run.groupby("noise_seed").sum().idxmax()
     ranked = per_run.loc[best_ds].sort_values(ascending=False)
@@ -344,7 +343,7 @@ def _load_phase(ctx, seed, angle):
 
 def recon_axes(ax, ctx, seed, angle, scalebar=True, fs=1.0, fs_in=None,
                clip=(0.01, 0.99), vlim=None):
-    """One reconstruction with every contrast-reversed region outlined."""
+    """One reconstruction with every reversed (red) and shifted (amber) region outlined."""
     fs_in = fs if fs_in is None else fs_in
     L = ctx["L"]
     ph = _load_phase(ctx, seed, angle)
@@ -365,10 +364,12 @@ def recon_axes(ax, ctx, seed, angle, scalebar=True, fs=1.0, fs_in=None,
             continue
         q = ctx["QF"][r.particle](np.hypot(r.ws_x, r.ws_y))
         rev = r.signed_corr < 0
-        # peak_ratio near 1 means the correlation surface has a competing extremum: the
-        # lattice may be correctly placed yet carry a half-cell interstitial component,
-        # which looks like real structure and is missed by offset and polarity alike
-        amb = (not rev) and (r.peak_ratio > 0.7 or q > 0.25)
+        # shifted: more than a quarter of the Wigner-Seitz cell from its true position, read
+        # off the correlation peak, so only where the lattice was recovered (|corr| >= 0.5).
+        # The submitted figures also flagged a competing correlation peak (peak_ratio > 0.7)
+        # as ambiguous; that fires on correctly placed lattices with few reflections, so the
+        # revision drops it, as make_fig_revision.status does.
+        amb = (not rev) and r.signed_corr >= 0.5 and q > 0.25
         if not (rev or amb):
             continue
         col = "#ff2d2d" if rev else "#ffb000"
@@ -385,7 +386,7 @@ def recon_axes(ax, ctx, seed, angle, scalebar=True, fs=1.0, fs_in=None,
     if nrev:
         bits.append(("%d reversed" % nrev, "#ff2d2d"))
     if namb:
-        bits.append(("%d ambiguous" % namb, "#ffb000"))
+        bits.append(("%d shifted" % namb, "#ffb000"))
     if not bits:
         bits = [("0/%d" % ctx["NREG"], "0.12")]
     for n, (t, c) in enumerate(bits):
@@ -645,34 +646,44 @@ def nonunanimity(d, angle=None, min_corr=0.5, q_tol=0.25):
 
     Returns (rate, n_groups); rate is nan when the run does not exist yet.
     """
+    flags = nonunanimity_groups(d, angle=angle, min_corr=min_corr, q_tol=q_tol)
+    if flags is None or not len(flags):
+        return float("nan"), 0
+    return float(flags["disagree"].mean()), len(flags)
+
+
+def nonunanimity_groups(d, angle=None, min_corr=0.5, q_tol=0.25):
+    """The per-group verdicts behind `nonunanimity`, one row per (dataset, region).
+
+    Split out so that confidence intervals can be computed over exactly the groups the
+    reported rate is computed over.  Returns a DataFrame with columns ns, particle,
+    disagree, or None when the sweep does not exist.
+    """
     if isinstance(d, dict) and "df" in d:          # an already-loaded (possibly
         df = d["df"].dropna(subset=["ws_x"])        # draw-limited) context
         QF = d.get("QF") or _default_QF()
     else:
         f = paths.sweep(d) / "summary.csv"
         if not f.exists():
-            return float("nan"), 0
+            return None
         df = pd.read_csv(f).dropna(subset=["ws_x"])
         QF = _default_QF()
     if angle is not None:
         df = df[df.angle_mrad == angle]
     df = df[df.signed_corr.abs() >= min_corr]
-    if not len(df):
-        return float("nan"), 0
     df = df.assign(ns=df.seed // 100)
-    tot = dis = 0
-    for (_, part), g in df.groupby(["ns", "particle"]):
+    rows = []
+    for (ns, part), g in df.groupby(["ns", "particle"]):
         if len(g) < 2:
             continue
-        tot += 1
         if g["reversed"].nunique() > 1:
-            dis += 1
+            rows.append((ns, part, True))
             continue
         P = g[["ws_x", "ws_y"]].to_numpy()
         sep = np.hypot(*(P[:, None, :] - P[None, :, :]).transpose(2, 0, 1)).max()
         qf = QF.get(part)
-        dis += int(qf is not None and float(qf(sep)) > q_tol)
-    return (dis / tot if tot else float("nan")), tot
+        rows.append((ns, part, bool(qf is not None and float(qf(sep)) > q_tol)))
+    return pd.DataFrame(rows, columns=["ns", "particle", "disagree"])
 
 
 def _heat(ax, M, rowlab, collab, title, cmap="magma_r", vmax=1.0):

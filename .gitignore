@@ -16,3 +16,6 @@ venv/
 *.h5
 *.dm4
 *.emd
+
+# low-resolution previews written alongside the figure PDFs
+*_preview.jpg

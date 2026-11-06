@@ -35,6 +35,8 @@ def main():
                          "shipped caches live in dp_cache/, since they depend only on the "
                          "sample and are shared across sweeps.")
     ap.add_argument("--support", action="store_true")
+    ap.add_argument("--carbon-thickness", type=float, default=None,
+                    help="physical film thickness (Angstrom); default the published film")
     ap.add_argument("--energy", type=float, default=sim.ENERGY)
     args = ap.parse_args()
     if args.energy != sim.ENERGY:
@@ -65,7 +67,8 @@ def main():
     }
     LATTICE = {"au_111": "au_111", "au_100": "au_100", "decahedron": "decahedron_w0"}
 
-    atoms = sim.build_sample(support=args.support)
+    atoms = sim.build_sample(support=args.support or args.carbon_thickness is not None,
+                             carbon_thickness=args.carbon_thickness)
     pot = abtem.Potential(atoms, gpts=(sim.GPTS, sim.GPTS),
                           slice_thickness=float(atoms.cell[2, 2])).build()
     lam = abtem.core.energy.energy2wavelength(sim.ENERGY)
