@@ -43,9 +43,9 @@ uv run --project ../../simulated-results python make_fig_experiment.py ../output
 |---|---|---|---|
 | Fig. 3 | two seeds at 24 and 1.5 mrad, and the two boxed particles overlaid | `fig_resp_fig3_overlay` | `make_fig_experiment.py overlay` |
 | Fig. S1 | the HAADF images with the scanned field of view and the two particles | `fig_resp_haadf_fov` | `make_fig_experiment.py fov` |
-| Fig. S11 | the blue particle from every code at every angle | `fig_resp_engines` | `make_fig_experiment.py engines` |
-| Fig. S12 | binned against unbinned data at 3 and 6 mrad | `fig_resp_unbinned` | `make_fig_experiment.py unbinned` |
-| Fig. S13 | the same field of view at four camera lengths | `fig_resp_camera_length_noparallax.png` | made outside these scripts |
+| Fig. S9 | the blue particle from every code at every angle | `fig_resp_engines` | `make_fig_experiment.py engines` |
+| Fig. S10 | binned against unbinned data at 3 and 6 mrad | `fig_resp_unbinned` | `make_fig_experiment.py unbinned` |
+| Fig. S11 | the same field of view at four camera lengths | `fig_resp_camera_length_noparallax.png` | made outside these scripts |
 
 `fig_resp_fixed_probe` (`make_fig_experiment.py fixed`) appears only in the response to the
 reviewers, and its input, `e1_fixed_crops.npz` from `fixed_crops.py`, is not committed.
@@ -76,7 +76,7 @@ astigmatism, four mixed-state probe modes, and one slice.
 python reconstruct_quantem.py --scan 26 --seeds 0 1 2 3 --iters 200 --out DIR
 # ... with the probe of a previous reconstruction held fixed
 python reconstruct_quantem.py --scan 26 --seeds 10 11 12 --iters 200 --probe-from RUN.h5 --out DIR
-# ... unbinned, on the central 256 x 256 positions (Fig. S12)
+# ... unbinned, on the central 256 x 256 positions (Fig. S10)
 python reconstruct_quantem.py --scan 26 --seeds 0 1 --bin 1 --iters 200 --snapshot-every 50 \
     --crop 128 384 128 384 --out DIR
 # an independent mixed-state ePIE on the recorded counts

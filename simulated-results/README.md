@@ -20,11 +20,11 @@ figures/revision/, figures/response/   the SI and response figures added in the 
 
 ```bash
 uv sync
-uv run python scripts/make_figures.py            # Figs. 5, S8, S9
-uv run python scripts/make_fig_si_sparklines.py  # Fig. S10
+uv run python scripts/make_figures.py            # Figs. 5, S6, S7
+uv run python scripts/make_fig_si_sparklines.py  # Fig. S8
 uv run python scripts/make_fig_stitching.py      # Fig. 4 (re-runs the forward model)
-uv run python scripts/make_fig_revision.py seeded pair thickness mixed   # Figs. S14, S17, S18, S21
-uv run python scripts/make_fig_response.py       # Figs. S15, S16, S19, S20, S22
+uv run python scripts/make_fig_revision.py seeded pair thickness mixed   # Figs. S12, S15, S16, S19
+uv run python scripts/make_fig_response.py       # Figs. S13, S14, S17, S18, S20
 uv run python scripts/table_s1.py                # Tables S1-S3
 uv run python scripts/draw_level.py              # dataset-level counts quoted in Section 3.4
 uv run python scripts/gsfull_results.py          # the gauge search of Section 4.2
@@ -34,21 +34,21 @@ uv run python scripts/gsfull_results.py          # the gauge search of Section 4
 |---|---|---|---|
 | Fig. 4 | phase-free nanodiffraction stitching, the negative control | `fig_stitching` | `make_fig_stitching.py` |
 | Fig. 5 | dose, then object model, one variable per row | `fig_sweep` | `make_figures.py fig_sweep` |
-| Fig. S8 | free-standing vs on the carbon film, everything else matched | `fig_si_substrate` | `make_figures.py fig_si_substrate` |
-| Fig. S9 | with and without 8 frozen-phonon configurations | `fig_si_phonons` | `make_figures.py fig_si_phonons` |
-| Fig. S10 | every run, every checkpoint, every region | `fig_si_sparklines` | `make_fig_si_sparklines.py` |
-| Fig. S14 | four-mode mixed-state object against a single object | `revision/rev_mixed` | `make_fig_revision.py mixed` |
-| Fig. S15 | thermal motion and combined model mismatches | `response/fig_resp_mismatch` | `make_fig_response.py mismatch` |
-| Fig. S16 | particle size, and the [111] particle's neighbors | `response/fig_resp_size` | `make_fig_response.py size` |
-| Fig. S17 | reconstructions behind Fig. S16b | `revision/rev_pair` | `make_fig_revision.py pair` |
-| Fig. S18 | starts from the ground truth and its gauge transforms | `revision/rev_seeded` | `make_fig_revision.py seeded` |
-| Fig. S19 | final misfit of random and seeded starts | `response/fig_resp_loss` | `make_fig_response.py loss` |
-| Fig. S20 | the carbon support: thickness, folded vs physical film | `response/fig_resp_carbon` | `make_fig_response.py carbon` |
-| Fig. S21 | one reconstruction per film thickness | `revision/rev_thickness` | `make_fig_revision.py thickness` |
-| Fig. S22 | dynamical scattering in thick periodic slabs | `response/fig_resp_dynamical` | `make_fig_response.py dynamical` |
+| Fig. S6 | free-standing vs on the carbon film, everything else matched | `fig_si_substrate` | `make_figures.py fig_si_substrate` |
+| Fig. S7 | with and without 8 frozen-phonon configurations | `fig_si_phonons` | `make_figures.py fig_si_phonons` |
+| Fig. S8 | every run, every checkpoint, every region | `fig_si_sparklines` | `make_fig_si_sparklines.py` |
+| Fig. S12 | four-mode mixed-state object against a single object | `revision/rev_mixed` | `make_fig_revision.py mixed` |
+| Fig. S13 | thermal motion and combined model mismatches | `response/fig_resp_mismatch` | `make_fig_response.py mismatch` |
+| Fig. S14 | particle size, and the [111] particle's neighbors | `response/fig_resp_size` | `make_fig_response.py size` |
+| Fig. S15 | reconstructions behind Fig. S14b | `revision/rev_pair` | `make_fig_revision.py pair` |
+| Fig. S16 | starts from the ground truth and its gauge transforms | `revision/rev_seeded` | `make_fig_revision.py seeded` |
+| Fig. S17 | final misfit of random and seeded starts | `response/fig_resp_loss` | `make_fig_response.py loss` |
+| Fig. S18 | the carbon support: thickness, folded vs physical film | `response/fig_resp_carbon` | `make_fig_response.py carbon` |
+| Fig. S19 | one reconstruction per film thickness | `revision/rev_thickness` | `make_fig_revision.py thickness` |
+| Fig. S20 | dynamical scattering in thick periodic slabs | `response/fig_resp_dynamical` | `make_fig_response.py dynamical` |
 | Tables S1–S3 | every condition; detector sampling; scan geometry | `table_s1.{tex,csv}`, `table_s2.tex`, `table_s3.tex` | `table_s1.py` |
 
-Figs. S11–S13 are experimental, in [`../experimental-results`](../experimental-results).
+Figs. S9–S11 are experimental, in [`../experimental-results`](../experimental-results).
 `make_fig_revision.py` also draws the figures that appear only in the response to the
 reviewers (`sampling`, `scan`, `probe`, `search`, `mismatch`). Those figures are in
 `figures/revision/`, but their inputs are not committed, so run without arguments the script
@@ -61,7 +61,7 @@ The records in `figures/` hold the numbers the text quotes:
 | `draw_level.{md,csv}` | every condition counted by dataset, including the combined mismatches and the thickness series | `draw_level.py` |
 | `gsfull_results.{md,csv}` | the full gauge search, one row per edited region | `gsfull_results.py` |
 | `pe_results.{md,csv}` | how well blind runs recover the probe from a wrong start | `pe_results.py` (needs stored probes, not committed) |
-| `dynamical_check.json` | pattern variation with probe position in thick slabs, read by Fig. S22 | `dynamical_check.py` |
+| `dynamical_check.json` | pattern variation with probe position in thick slabs, read by Fig. S20 | `dynamical_check.py` |
 | `summary_table.{md,csv}` | Table S1 of the submitted version, on the folded film | `summary_table.py` |
 
 Everything writes into `figures/`, which is committed, so a fresh run can be diffed against
@@ -82,7 +82,7 @@ submitted sweeps stay reproducible.
 
 Every on-carbon result in the revised paper uses the physical film. The submitted sweeps in
 `outputs/` (`ss_carbon_*`, `ms_carbon_*`, `msfp_carbon_*`) are kept as the record of the
-submitted version and as the folded-film comparison of Fig. S20b.
+submitted version and as the folded-film comparison of Fig. S18b.
 
 ## Re-running a sweep
 
@@ -112,7 +112,7 @@ command per line (the exact invocation of every sweep in `outputs/rev/`), and
 (`gpu_wait.sh`) and disk quota. Large sweeps run in parts that `merge_parts.py` combines.
 Multislice forward data come from `make_multislice_data.py`, which has a torch/CUDA
 backend (`--backend torch`). The gauge search of Section 4.2 is `gauge_search_full.py`, one
-job per (reconstruction, region), and the thick-slab check of Fig. S22 is
+job per (reconstruction, region), and the thick-slab check of Fig. S20 is
 `dynamical_check.py`.
 
 ## Sweep naming
@@ -143,14 +143,14 @@ physical 2.8 nm film (realisation 10, "R0"), plus:
 
 | sweeps | what | used by |
 |---|---|---|
-| `ss_carbon28_*`, `ms_carbon28_*`, `msfp_carbon28_*` | the submitted conditions on the physical film | Figs. 5, S8–S10, Table S1 |
-| `film_new_s1{1,2,3}_*`, `pool_{ms,msfp}_carbon28_s1{1,2,3}_a3_*` | the same 3 mrad conditions on three more realisations of the film, pooled with R0 | Table S1, Fig. S15 |
-| `film_legacy_s1{1,2}_*` | two more realisations of the folded film | Fig. S20b |
-| `mm_{ms,msfp,mssrc,msfoc,msall}_{known,blind_pe}_*` | combined model mismatches at 2×10⁵ e/Å²: phonons, source size, focal spread, all three, and a probe refined from a wrong start | Fig. S15c, Table S1 |
-| `mixfix_{ms,msfp}_1e5` | four-mode mixed-state object | Fig. S14 |
-| `single111_*`, `scale*_bare_*`, `pair_*` | the [111] particle alone at three sizes, the sample scaled, and the [111] particle with its neighbors added one at a time | Figs. S16, S17 |
-| `init_{truth,reversed,shifted}_*`, `show_init_*` | starts from the ground truth and its gauge transforms | Figs. S18, S19 |
-| `dw_thick_{ss,ms}_c{10,28,50,100,200}_*`, `show_thick_*` | film thickness series in Å, scored with the film's slowly varying phase divided out | Figs. S20a, S21 |
+| `ss_carbon28_*`, `ms_carbon28_*`, `msfp_carbon28_*` | the submitted conditions on the physical film | Figs. 5, S6–S8, Table S1 |
+| `film_new_s1{1,2,3}_*`, `pool_{ms,msfp}_carbon28_s1{1,2,3}_a3_*` | the same 3 mrad conditions on three more realisations of the film, pooled with R0 | Table S1, Fig. S13 |
+| `film_legacy_s1{1,2}_*` | two more realisations of the folded film | Fig. S18b |
+| `mm_{ms,msfp,mssrc,msfoc,msall}_{known,blind_pe}_*` | combined model mismatches at 2×10⁵ e/Å²: phonons, source size, focal spread, all three, and a probe refined from a wrong start | Fig. S13c, Table S1 |
+| `mixfix_{ms,msfp}_1e5` | four-mode mixed-state object | Fig. S12 |
+| `single111_*`, `scale*_bare_*`, `pair_*` | the [111] particle alone at three sizes, the sample scaled, and the [111] particle with its neighbors added one at a time | Figs. S14, S15 |
+| `init_{truth,reversed,shifted}_*`, `show_init_*` | starts from the ground truth and its gauge transforms | Figs. S16, S17 |
+| `dw_thick_{ss,ms}_c{10,28,50,100,200}_*`, `show_thick_*` | film thickness series in Å, scored with the film's slowly varying phase divided out | Figs. S18a, S19 |
 | `samp_*` | detector binning, cropping to 192 px, and a doubled field of view | Table S2 |
 | `jit_known_*`, `jit_blind_pe_*`, `grid_blind_pe_*`, `grid_blind_bare_inf` | scan positions perturbed by ±1 Å, with a known or refined probe | Table S3 |
 | `gsfull_*` | the full gauge search; its candidates are in `parts/*/candidates_*.csv` | Section 4.2 |

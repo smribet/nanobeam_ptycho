@@ -28,4 +28,4 @@ The revised version (Ultramicroscopy, minor revision) adds:
   PtyRAD, and compared after removing any global shift.
 
 The submitted version's sweeps are kept, as its record and as the folded-film comparison of
-Fig. S20b, and its figures are in the history of this repository (commit `667bbeb`).
+Fig. S18b, and its figures are in the history of this repository (commit `667bbeb`).
